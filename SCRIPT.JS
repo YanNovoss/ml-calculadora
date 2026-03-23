@@ -41,9 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 let modoAtual = "preco";
 
-// =============================
-// TROCAR MODO
-// =============================
+
 function mudarModo(modo) {
     modoAtual = modo;
 
@@ -78,16 +76,14 @@ function mudarModo(modo) {
         resultadoLabel.innerText = "Margem Real";
     }
 
-    // Limpar resultado
+
     document.getElementById("resultado").innerText = "R$ 0,00";
     document.getElementById("detalhes").innerText = "";
     document.getElementById("viabilidade").textContent = "";
     document.getElementById("breakdown").style.display = "none";
 }
 
-// =============================
-// CÁLCULO PRINCIPAL
-// =============================
+
 function calcular() {
     if (modoAtual === "preco") {
         calcularPreco();
@@ -96,9 +92,7 @@ function calcular() {
     }
 }
 
-// =============================
-// MODO 1: CALCULAR PREÇO
-// =============================
+
 function calcularPreco() {
     let custo = parseFloat(document.getElementById("custo").value) || 0;
     let frete = parseFloat(document.getElementById("frete").value) || 0;
@@ -141,7 +135,7 @@ function calcularPreco() {
 
     detalhesEl.innerText = `Lucro: R$ ${lucroValor.toFixed(2)} • Margem: ${margemReal.toFixed(1)}%`;
     
-    // Badge de viabilidade
+
     let classe = "viavel";
     let mensagem = "✅ Margem Excelente";
     
@@ -157,10 +151,8 @@ function calcularPreco() {
     viabilidadeEl.textContent = mensagem;
     detalhesEl.className = `detalhes ${classe}`;
 
-    // Breakdown do preço
     exibirBreakdown(custo, frete, taxasAbsoluto, impostosAbsoluto, lucroValor, preco);
 
-    // Verificar margem mínima
     verificarMargemMinima();
 
     salvarHistoricoComNome({
@@ -170,9 +162,7 @@ function calcularPreco() {
     });
 }
 
-// =============================
-// EXIBIR BREAKDOWN DO PREÇO
-// =============================
+
 function exibirBreakdown(custo, frete, taxa, imposto, lucro, precoTotal) {
     let breakdownEl = document.getElementById("breakdown");
     breakdownEl.style.display = "block";
